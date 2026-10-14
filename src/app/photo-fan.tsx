@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type ReactElement } from "react";
+import { useEffect, useRef, useState, type PointerEvent, type ReactElement } from "react";
 
 type Photo = {
   readonly src: string;
@@ -31,6 +31,9 @@ const photos = [
   { src: "/pexels-zeusdcreator-14314173.jpg", alt: "Farmers holding a sheaf of rice" },
 ] as const satisfies readonly Photo[];
 
+const autoplayMs = 3000;
+const resumeAfterMs = 6000;
+
 const fanStride = "[--fan-stride:7.5rem] sm:[--fan-stride:9.5rem]";
 
 function offsetFromCenter(index: number, active: number, count: number): number {
@@ -54,8 +57,12 @@ function placement(shown: number): { readonly rotate: number; readonly lift: num
 
 export function PhotoFan(): ReactElement {
   const [active, setActive] = useState(0);
-  const [userPaused, setUserPaused] = useState(false);
-  const [held, setHeld] = useState(false);
+  // Autoplay pauses while a mouse rests on a photo, while the carousel has keyboard focus,
+  // and for a few seconds after someone steps through it themselves.
+  const [hovering, setHovering] = useState(false);
+  const [keyboardFocus, setKeyboardFocus] = useState(false);
+  const [resting, setResting] = useState(false);
+  const restTimer = useRef<number | undefined>(undefined);
   const [reduced, setReduced] = useState(false);
   const [dragStart, setDragStart] = useState<number | null>(null);
 
@@ -68,15 +75,24 @@ export function PhotoFan(): ReactElement {
   }, []);
 
   useEffect(() => {
-    if (userPaused || held || reduced) return;
-    const id = window.setInterval(() => {
+    if (hovering || keyboardFocus || resting || reduced) return;
+    const id = window.setTimeout(() => {
       setActive((current) => (current + 1) % photos.length);
-    }, 4500);
-    return () => window.clearInterval(id);
-  }, [userPaused, held, reduced, active]);
+    }, autoplayMs);
+    return () => window.clearTimeout(id);
+  }, [hovering, keyboardFocus, resting, reduced, active]);
+
+  useEffect(() => () => window.clearTimeout(restTimer.current), []);
+
+  // Touch screens fire pointer enter on tap but not always leave, so only a real mouse pauses.
+  function hover(event: PointerEvent, over: boolean): void {
+    if (event.pointerType === "mouse") setHovering(over);
+  }
 
   function step(direction: 1 | -1): void {
-    setUserPaused(true);
+    setResting(true);
+    window.clearTimeout(restTimer.current);
+    restTimer.current = window.setTimeout(() => setResting(false), resumeAfterMs);
     setActive((current) => (current + direction + photos.length) % photos.length);
   }
 
@@ -85,11 +101,12 @@ export function PhotoFan(): ReactElement {
       className="relative mt-16 pb-4"
       aria-roledescription="carousel"
       aria-label="Photos from the field to the market"
-      onMouseEnter={() => setHeld(true)}
-      onMouseLeave={() => setHeld(false)}
-      onFocus={() => setHeld(true)}
+      onFocus={(event) => {
+        // Only keyboard focus counts; a mouse click on an arrow also focuses it.
+        if (event.target.matches(":focus-visible")) setKeyboardFocus(true);
+      }}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setHeld(false);
+        if (!event.currentTarget.contains(event.relatedTarget)) setKeyboardFocus(false);
       }}
       onKeyDown={(event) => {
         if (event.key === "ArrowRight") {
@@ -129,6 +146,8 @@ export function PhotoFan(): ReactElement {
                 transition: reduced ? "none" : "transform 600ms ease, opacity 600ms ease",
               }}
               aria-hidden={raw !== 0}
+              onPointerEnter={(event) => hover(event, true)}
+              onPointerLeave={(event) => hover(event, false)}
             >
               <figure className="overflow-hidden rounded-[1.4rem] border-[5px] border-white bg-white shadow-[0_18px_40px_rgba(23,36,28,0.16)]">
                 <div className="relative h-52 sm:h-72">
