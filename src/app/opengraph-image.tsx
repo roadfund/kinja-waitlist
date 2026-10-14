@@ -70,7 +70,6 @@ export default async function Image() {
               key={item.file}
               style={{ display: "flex", position: "absolute", left: item.x, top: item.y, width: 200, height: 280, borderRadius: 28, border: `7px solid ${colors.cream}`, overflow: "hidden", transform: `rotate(${item.rotate}deg)`, boxShadow: "0 24px 48px rgba(0,0,0,0.35)" }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain img elements */}
               <img src={images[index]} alt="" width={200} height={280} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
             </div>
           ))}
