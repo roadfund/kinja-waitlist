@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-manrope);
-  --font-serif: var(--font-newsreader);
-  --font-display: var(--font-ubuntu);
+  --font-sans: var(--font-ubuntu);
 }
 
 @theme {
@@ -39,8 +37,4 @@
 
 body {
   font-family: var(--font-sans), sans-serif;
-}
-
-.font-serif {
-  font-family: var(--font-serif), Georgia, serif;
 }

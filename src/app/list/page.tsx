@@ -33,20 +33,20 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
     <div className="min-h-screen bg-[#f4f1e8] text-[#344e41]">
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-10">
         <header className="flex items-center justify-between gap-4">
-          <p className="text-2xl font-semibold tracking-tight">kinja<span className="text-[#c4922a]">.</span></p>
+          <p className="text-2xl font-medium tracking-tight">kinja<span className="text-[#c4922a]">.</span></p>
           <form action="/list/logout" method="post">
-            <button className="text-sm font-semibold underline decoration-[#d9d3c4] underline-offset-4" type="submit">Sign out</button>
+            <button className="text-sm font-medium underline decoration-[#d9d3c4] underline-offset-4" type="submit">Sign out</button>
           </form>
         </header>
         <div className="mt-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="font-serif text-4xl">Who has joined</h1>
+            <h1 className="text-4xl font-bold tracking-tight">Who has joined</h1>
             <p className="mt-2 text-sm text-[#5d685e]">{countLabel}</p>
           </div>
-          <a className="inline-flex h-11 items-center bg-[#24382c] px-4 text-sm font-semibold text-[#f4f1e8]" href="/list/export">Export CSV</a>
+          <a className="inline-flex h-11 items-center bg-[#24382c] px-4 text-sm font-medium text-[#f4f1e8]" href="/list/export">Export CSV</a>
         </div>
         <form className="mt-8" action="/list" method="get">
-          <label className="block text-sm font-semibold" htmlFor="q">Search</label>
+          <label className="block text-sm font-medium" htmlFor="q">Search</label>
           <input id="q" name="q" defaultValue={q ?? ""} placeholder="Name, email, or business" className="mt-2 h-12 w-full max-w-md border border-[#d9d3c4] bg-white px-3 outline-none focus:border-[#24382c]" />
         </form>
         {entries.length === 0 ? (
@@ -56,12 +56,12 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-[#d9d3c4] text-[#5d685e]">
-                  <th className="py-3 pr-4 font-semibold">Joined</th>
-                  <th className="py-3 pr-4 font-semibold">Name</th>
-                  <th className="py-3 pr-4 font-semibold">Email</th>
-                  <th className="py-3 pr-4 font-semibold">Business</th>
-                  <th className="py-3 pr-4 font-semibold">How they source</th>
-                  <th className="py-3 font-semibold">Note</th>
+                  <th className="py-3 pr-4 font-medium">Joined</th>
+                  <th className="py-3 pr-4 font-medium">Name</th>
+                  <th className="py-3 pr-4 font-medium">Email</th>
+                  <th className="py-3 pr-4 font-medium">Business</th>
+                  <th className="py-3 pr-4 font-medium">How they source</th>
+                  <th className="py-3 font-medium">Note</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,16 +89,16 @@ function SignIn({ error }: { error?: string }) {
   return (
     <div className="flex min-h-screen items-center bg-[#f4f1e8] px-5 text-[#344e41]">
       <form action="/list/login" method="post" className="mx-auto w-full max-w-sm">
-        <p className="text-2xl font-semibold tracking-tight">kinja<span className="text-[#c4922a]">.</span></p>
-        <h1 className="mt-10 font-serif text-4xl">The waitlist</h1>
+        <p className="text-2xl font-medium tracking-tight">kinja<span className="text-[#c4922a]">.</span></p>
+        <h1 className="mt-10 text-4xl font-bold tracking-tight">The waitlist</h1>
         <p className="mt-3 text-sm leading-6 text-[#5d685e]">Enter the admin password to see who has joined.</p>
         <label className="sr-only" htmlFor="username">Username<input id="username" name="username" autoComplete="username" defaultValue="kinja" /></label>
-        <label className="mt-8 block text-sm font-semibold" htmlFor="password">
+        <label className="mt-8 block text-sm font-medium" htmlFor="password">
           Password
           <input id="password" name="password" type="password" autoComplete="current-password" required className="mt-2 h-12 w-full border border-[#d9d3c4] bg-white px-3 outline-none focus:border-[#24382c]" />
         </label>
         {message && <p className="mt-3 text-sm text-[#8c3a32]" role="alert">{message}</p>}
-        <button className="mt-6 h-12 w-full bg-[#24382c] font-semibold text-[#f4f1e8]" type="submit">See the list</button>
+        <button className="mt-6 h-12 w-full bg-[#24382c] font-medium text-[#f4f1e8]" type="submit">See the list</button>
       </form>
     </div>
   );

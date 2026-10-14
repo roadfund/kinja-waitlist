@@ -54,7 +54,7 @@ export function JoinForm({ variant = "solid" }: { variant?: keyof typeof trigger
 
   return (
     <>
-      <button ref={triggerRef} className={`inline-flex h-12 items-center gap-2 rounded-full px-7 text-base font-semibold ${triggerClass[variant]}`} type="button" onClick={show}>Get early access<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
+      <button ref={triggerRef} className={`inline-flex h-12 items-center gap-2 rounded-full px-7 text-base font-medium ${triggerClass[variant]}`} type="button" onClick={show}>Get early access<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
       {/* showModal() traps focus and closes on Escape. Safari doesn't focus a clicked button, so focus goes back by hand. */}
       <dialog
         ref={dialogRef}
@@ -77,25 +77,25 @@ export function JoinForm({ variant = "solid" }: { variant?: keyof typeof trigger
           <>
             <div className="flex shrink-0 items-start justify-between gap-3 px-4 pt-4 sm:px-8 sm:pt-7">
               <div className="min-w-0">
-                <h2 id={titleId} className="text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">Join the waitlist</h2>
+                <h2 id={titleId} className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Join the waitlist</h2>
                 <p className="mt-1 text-sm leading-6 text-moss">Leave your details. We will write when a place opens.</p>
               </div>
               <CloseButton onClick={close} />
             </div>
           <form action={action} className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain px-4 pb-5 pt-4 sm:px-8 sm:pb-8">
-            <label className="block text-sm font-semibold">
+            <label className="block text-sm font-medium">
               Your name
               <input className={lineClass} ref={nameRef} name="name" autoComplete="name" required value={name} onChange={(event) => setName(event.target.value)} />
             </label>
-            <label className="block text-sm font-semibold">
+            <label className="block text-sm font-medium">
               Email
               <input className={lineClass} name="email" type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
             </label>
-            <label className="block text-sm font-semibold">
+            <label className="block text-sm font-medium">
               Business name
               <input className={lineClass} name="business" autoComplete="organization" required value={business} onChange={(event) => setBusiness(event.target.value)} />
             </label>
-            <label className="block text-sm font-semibold">
+            <label className="block text-sm font-medium">
               How you source
               <span className="relative block">
                 <select className={`${lineClass} appearance-none pr-11`} name="sourcing" required value={sourcing} onChange={(event) => setSourcing(event.target.value)}>
@@ -107,7 +107,7 @@ export function JoinForm({ variant = "solid" }: { variant?: keyof typeof trigger
                 <svg className="pointer-events-none absolute right-5 top-[calc(50%+0.25rem)] -translate-y-1/2 text-forest" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </span>
             </label>
-            <label className="block text-sm font-semibold">
+            <label className="block text-sm font-medium">
               Anything else we should know? <span className="font-normal text-sage">(optional)</span>
               <textarea className={`${fieldClass} min-h-24 rounded-3xl py-3`} name="note" rows={3} placeholder="e.g. crops you buy, number of farmers, county" value={note} onChange={(event) => setNote(event.target.value)} />
             </label>
@@ -115,7 +115,7 @@ export function JoinForm({ variant = "solid" }: { variant?: keyof typeof trigger
               <label>Leave this empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
             </div>
             {state.status === "error" && <p className="text-sm text-danger" role="alert">{state.message}</p>}
-            <button className="h-12 w-full rounded-full bg-forest-deep text-base font-semibold text-cream-soft disabled:opacity-60" type="submit" disabled={pending}>
+            <button className="h-12 w-full rounded-full bg-forest-deep text-base font-medium text-cream-soft disabled:opacity-60" type="submit" disabled={pending}>
               {pending ? "Joining…" : "Join waitlist"}
             </button>
             <p className="text-xs leading-5 text-sage">We&apos;ll only use this to contact you about Kinja. We never sell or share your details.</p>
@@ -169,17 +169,17 @@ function Joined({ firstName, email, titleId, successRef, onDone }: JoinedProps) 
           </svg>
         </span>
       </div>
-      <h2 id={titleId} className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-forest-deep sm:text-4xl">You&apos;re on the list, {firstName}!</h2>
-      <p className="mx-auto mt-3 max-w-xs text-base leading-7 text-moss">We&apos;ll email <span className="block font-semibold [overflow-wrap:anywhere] text-forest">{email}</span> when your spot opens.</p>
+      <h2 id={titleId} className="mt-4 text-3xl font-bold leading-tight tracking-tight text-forest-deep sm:text-4xl">You&apos;re on the list, {firstName}!</h2>
+      <p className="mx-auto mt-3 max-w-xs text-base leading-7 text-moss">We&apos;ll email <span className="block font-medium [overflow-wrap:anywhere] text-forest">{email}</span> when your spot opens.</p>
       <div className="mt-7 rounded-2xl bg-white p-4 text-left shadow-[0_1px_0_rgba(23,36,28,0.06)] sm:p-5">
         <p className="text-sm font-bold text-forest">Know another buyer who should try Kinja?</p>
         <p className="mt-1 text-sm leading-6 text-moss">Send them this page.</p>
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
-          <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-forest px-4 text-sm font-semibold text-white hover:bg-forest-deep" type="button" onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage())}`, "_blank", "noopener,noreferrer")}>
+          <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-forest px-4 text-sm font-medium text-white hover:bg-forest-deep" type="button" onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage())}`, "_blank", "noopener,noreferrer")}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
             WhatsApp
           </button>
-          <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-sand px-4 text-sm font-semibold text-forest hover:bg-cream" type="button" onClick={copyLink}>
+          <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-sand px-4 text-sm font-medium text-forest hover:bg-cream" type="button" onClick={copyLink}>
             {copied ? (
               <svg {...iconProps}><path d="M20 6 9 17l-5-5" /></svg>
             ) : (
@@ -189,7 +189,7 @@ function Joined({ firstName, email, titleId, successRef, onDone }: JoinedProps) 
           </button>
         </div>
       </div>
-      <button className="mt-5 text-sm font-semibold text-moss underline decoration-sand underline-offset-4 hover:text-forest" type="button" onClick={onDone}>Done</button>
+      <button className="mt-5 text-sm font-medium text-moss underline decoration-sand underline-offset-4 hover:text-forest" type="button" onClick={onDone}>Done</button>
     </div>
   );
 }

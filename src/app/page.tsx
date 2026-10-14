@@ -35,7 +35,7 @@ export default function Home() {
     <main id="top" className="bg-white text-ink">
       <p className="px-6 pt-6 text-xl font-bold tracking-tight text-forest sm:px-10">kinja<span className="text-gold">.</span></p>
       <div className="mx-auto max-w-3xl px-6 pt-16 text-center sm:pt-24">
-        <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl">
+        <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl">
           <span className="block">Every handoff,</span>
           <span className="block">from the farm to the sale.</span>
         </h1>
@@ -50,14 +50,14 @@ export default function Home() {
       <PhotoFan />
       <section className="px-6 pt-20 pb-24 sm:px-10" aria-labelledby="how-it-works">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-widest text-moss">How it works</p>
-          <h2 id="how-it-works" className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">One record, from the farm gate to the buyer.</h2>
+          <p className="text-sm font-medium uppercase tracking-widest text-moss">How it works</p>
+          <h2 id="how-it-works" className="mt-3 max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl">One record, from the farm gate to the buyer.</h2>
           <ol className="mt-10 grid gap-4 lg:grid-cols-3">
             {steps.map((step, index) => (
               <li className="rounded-[1.4rem] bg-cream p-6" key={step.title}>
                 <div className="flex items-center justify-between">
                   <StepIcon>{step.icon}</StepIcon>
-                  <span className="text-sm font-semibold text-moss">Step {index + 1}</span>
+                  <span className="text-sm font-medium text-moss">Step {index + 1}</span>
                 </div>
                 <h3 className="mt-5 text-lg font-bold leading-snug tracking-tight text-forest">{step.title}</h3>
                 <p className="mt-2 text-base leading-7 text-moss">{step.body}</p>
@@ -70,7 +70,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+              <p className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
                 <span className="block">Start with</span>
                 <span className="block">your next harvest.</span>
               </p>
@@ -83,7 +83,7 @@ export default function Home() {
               <li><a className="hover:text-gold" href="#top">Back to top</a></li>
             </ul>
           </div>
-          <p className="mt-16 pb-[0.2em] font-display text-[min(36vw,30rem)] font-bold leading-[0.8] tracking-tight sm:mt-24" aria-hidden="true">kinja<span className="text-gold">.</span></p>
+          <p className="mt-16 pb-[0.2em] text-[min(36vw,30rem)] font-bold leading-[0.8] tracking-tight sm:mt-24" aria-hidden="true">kinja<span className="text-gold">.</span></p>
           <div className="flex flex-col gap-2 border-t border-cream/15 pt-5 text-sm text-cream/70 lg:flex-row lg:items-center lg:justify-between">
             <p>© 2026 Kinja</p>
             <p>The operating system for Africa&apos;s agricultural value chains.</p>
