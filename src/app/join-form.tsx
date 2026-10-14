@@ -134,7 +134,7 @@ function CloseButton({ onClick, className = "" }: { onClick: () => void; classNa
 const iconProps = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
 
 function shareMessage(): string {
-  return `I just joined the Kinja waitlist. It records every handoff of a crop, from the farm to the sale: ${window.location.origin}`;
+  return `Just got on the Kinja waitlist. Looks really useful for buyers like us. Worth getting your name down early: 👇\n${window.location.origin}`;
 }
 
 type JoinedProps = {

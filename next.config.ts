@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: { qualities: [75, 90] },
+  // The share image reads these photos from disk; make sure they ship with the deployment.
+  outputFileTracingIncludes: { "/opengraph-image": ["./src/app/_og/**/*"] },
   cacheComponents: true,
   partialPrefetching: true,
   async headers() {
