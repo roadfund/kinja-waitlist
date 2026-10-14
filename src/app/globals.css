@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-newsreader);
+  --font-display: var(--font-ubuntu);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-ink: #17241c;
+  --color-forest: #344e41;
+  --color-forest-deep: #24382c;
+  --color-night: #121c16;
+  --color-gold: #e8b44d;
+  --color-cream: #f7f4ec;
+  --color-cream-soft: #f4f1e8;
+  --color-line: #e4e7e2;
+  --color-sand: #d9d3c4;
+  --color-muted: #6b726c;
+  --color-moss: #5d685e;
+  --color-sage: #718074;
+  --color-danger: #8c3a32;
+}
+
+@keyframes pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes draw {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-up {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
 }
