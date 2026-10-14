@@ -128,30 +128,6 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
           </div>
         </section>
 
-        <details className="mt-4 rounded-2xl bg-white p-5 text-sm">
-          <summary className="cursor-pointer font-medium">Show chart data as a table</summary>
-          <div className="mt-4 grid gap-6 sm:grid-cols-2">
-            <table className="w-full text-left tabular-nums">
-              <caption className="pb-2 text-left font-medium">Signups per {summary.bucketUnit}</caption>
-              <thead><tr className="border-b border-line text-moss"><th className="py-2 font-normal">{summary.bucketUnit === "week" ? "Week of" : "Day"}</th><th className="py-2 text-right font-normal">Signups</th></tr></thead>
-              <tbody>
-                {summary.buckets.map((bucket) => (
-                  <tr className="border-b border-line/60" key={bucket.start}><td className="py-1.5">{bucket.label.replace("Week of ", "")}</td><td className="py-1.5 text-right">{bucket.count}</td></tr>
-                ))}
-              </tbody>
-            </table>
-            <table className="w-full self-start text-left tabular-nums">
-              <caption className="pb-2 text-left font-medium">How they source</caption>
-              <thead><tr className="border-b border-line text-moss"><th className="py-2 font-normal">Method</th><th className="py-2 text-right font-normal">Signups</th></tr></thead>
-              <tbody>
-                {summary.bySource.map((source) => (
-                  <tr className="border-b border-line/60" key={source.value}><td className="py-1.5">{source.label}</td><td className="py-1.5 text-right">{source.count}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </details>
-
         <section className="mt-10" aria-labelledby="people">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 id="people" className="text-2xl font-bold tracking-tight text-ink">People</h2>
