@@ -9,6 +9,6 @@ function resolveSiteUrl(): string {
 export const site = {
   name: "Kinja",
   url: resolveSiteUrl(),
-  title: "Kinja: every handoff, from the farm to the sale",
+  title: "Kinja: the operating system for Africa's agricultural value chains",
   description: "Kinja records every purchase and handoff of your produce, from the farmer to the buyer. Join the waitlist for early access.",
 } as const;

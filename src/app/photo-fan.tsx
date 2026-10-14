@@ -26,7 +26,6 @@ const photos = [
   { src: "/pexels-stephanie-bujiriri-2160383150-36683210.jpg", alt: "A farmer planting seedlings" },
   { src: "/pexels-alialcantara-11798034.jpg", alt: "A farmer harvesting leafy vegetables" },
   { src: "/pexels-safari-consoler-3290243-11588032.jpg", alt: "A farmer tending rows of leafy crops" },
-  { src: "/pexels-safari-consoler-3290243-11588042.jpg", alt: "A farmer working along crop rows" },
   { src: "/pexels-selman-urluca-328308611-20371811.jpg", alt: "A farmer with a hoe and a bunch of greens" },
   { src: "/pexels-safari-consoler-3290243-11350431.jpg", alt: "Farmers turning soil with hoes" },
   { src: "/pexels-zeusdcreator-14314173.jpg", alt: "Farmers holding a sheaf of rice" },
