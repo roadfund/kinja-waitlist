@@ -10,10 +10,17 @@ function avatarUrl(seed: string): string {
 // Seeds come from random entry ids, so no names or emails leave the server.
 export async function SignupAvatars() {
   await connection();
-  const store = getStore();
-  const total = store.count();
+  let total: number;
+  let ids: string[];
+  try {
+    const store = getStore();
+    [total, ids] = await Promise.all([store.count(), store.recentIds(shown)]);
+  } catch (error) {
+    // The count is a nice-to-have; never take the page down over it.
+    console.error("Could not load the signup count", error);
+    return null;
+  }
   if (total === 0) return null;
-  const ids = store.recentIds(shown);
   const label = total === 1 ? "1 person has joined" : `${total.toLocaleString("en")} people have joined`;
 
   return (

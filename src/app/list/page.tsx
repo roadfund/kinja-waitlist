@@ -26,7 +26,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
   if (!(await isAdmin())) return <SignIn error={error} />;
 
   const query = (q ?? "").trim().toLowerCase();
-  const entries = getStore().list().filter((entry) => matches(entry, query));
+  const entries = (await getStore().list()).filter((entry) => matches(entry, query));
   const countLabel = entries.length === 1 ? "1 person" : `${entries.length} people`;
 
   return (

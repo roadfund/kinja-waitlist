@@ -23,11 +23,11 @@ export type JoinBody = {
 
 export type JoinResult = { ok: true } | { ok: false; message: string };
 
-export function joinWaitlist(store: EntryStore, input: JoinBody, now = new Date()): JoinResult {
+export async function joinWaitlist(store: EntryStore, input: JoinBody, now = new Date()): Promise<JoinResult> {
   const note = input.note?.trim() ? input.note : undefined;
   const parsed = JoinInput.safeParse({ ...input, note });
   if (!parsed.success) return { ok: false, message: parsed.error.issues[0]?.message ?? "Some details are missing." };
-  const saved = store.insert({
+  const saved = await store.insert({
     id: randomUUID(),
     name: parsed.data.name,
     email: parsed.data.email,

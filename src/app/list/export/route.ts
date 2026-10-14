@@ -4,7 +4,7 @@ import { entriesToCsv } from "@/waitlist/csv";
 
 export async function GET() {
   if (!(await isAdmin())) return new Response("Sign in to export the list.", { status: 401 });
-  const csv = entriesToCsv(getStore().list());
+  const csv = entriesToCsv(await getStore().list());
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",

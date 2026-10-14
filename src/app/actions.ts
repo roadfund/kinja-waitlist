@@ -22,13 +22,19 @@ export async function joinAction(_previous: JoinState, formData: FormData): Prom
   const headerList = await headers();
   const ip = headerList.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
   if (!allowJoin(ip)) return { status: "error", message: "Too many attempts. Try again in a little while." };
-  const result = joinWaitlist(getStore(), {
-    name: text(formData, "name"),
-    email: text(formData, "email"),
-    business: text(formData, "business"),
-    sourcing: text(formData, "sourcing"),
-    note: text(formData, "note"),
-  });
+  let result: Awaited<ReturnType<typeof joinWaitlist>>;
+  try {
+    result = await joinWaitlist(getStore(), {
+      name: text(formData, "name"),
+      email: text(formData, "email"),
+      business: text(formData, "business"),
+      sourcing: text(formData, "sourcing"),
+      note: text(formData, "note"),
+    });
+  } catch (error) {
+    console.error("Could not save a waitlist entry", error);
+    return { status: "error", message: "Something went wrong on our side. Please try again in a moment." };
+  }
   if (!result.ok) return { status: "error", message: result.message };
   return joined;
 }
